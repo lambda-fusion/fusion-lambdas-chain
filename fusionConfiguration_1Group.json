@@ -1,0 +1,10 @@
+{
+  "group1": {
+    "entry": "screenshot",
+    "lambdas": [
+      "screenshot",
+      "resize",
+      "saveS3"
+    ]
+  }
+}

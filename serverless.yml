@@ -1,0 +1,31 @@
+service:
+  name: fusion-lambdas
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - 'lambda:InvokeFunction'
+        - 'lambda:InvokeAsync'
+      Resource: '*'
+    - Effect: Allow
+      Action:
+        - 's3:PutObject'
+      Resource: '*'
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/**
+    - node_modules/aws-sdk/**
+functions:
+  screenshot:
+    handler: src/screenshot.handler
+    name: screenshot
+    timeout: 60
+  resize:
+    handler: src/resize.handler
+    name: resize
+  saveS3:
+    handler: src/saveS3.handler
+    name: saveS3

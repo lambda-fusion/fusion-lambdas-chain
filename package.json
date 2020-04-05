@@ -1,0 +1,21 @@
+{
+  "name": "fusion-lambdas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-yml": "aws-lambda-fusion -f fusionConfiguration.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-lambda-fusion": "0.0.14",
+    "chrome-aws-lambda": "^2.1.1",
+    "puppeteer-core": "^2.1.1",
+    "sharp": "^0.25.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.644.0"
+  }
+}

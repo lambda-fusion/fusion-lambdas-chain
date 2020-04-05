@@ -1,0 +1,15 @@
+{
+  "group1": {
+    "entry": "screenshot",
+    "lambdas": [
+      "screenshot"
+    ]
+  },
+  "group3": {
+    "entry": "resize",
+    "lambdas": [
+      "resize",
+      "saveS3"
+    ]
+  }
+}
