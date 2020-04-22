@@ -14,6 +14,10 @@ provider:
       Action:
         - 's3:PutObject'
       Resource: '*'
+    - Effect: Allow
+      Action:
+        - 'logs:*'
+      Resource: '*'
 package:
   exclude:
     - node_modules/puppeteer/.local-chromium/**
@@ -23,9 +27,6 @@ functions:
     handler: src/screenshot.handler
     name: screenshot
     timeout: 60
-  resize:
-    handler: src/resize.handler
-    name: resize
   saveS3:
     handler: src/saveS3.handler
     name: saveS3

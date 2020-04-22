@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-yml": "aws-lambda-fusion -f fusionConfiguration.json"
+    "generate-yml": "aws-lambda-fusion -f https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-lambda-fusion": "0.0.14",
-    "chrome-aws-lambda": "^2.1.1",
-    "puppeteer-core": "^2.1.1",
-    "sharp": "^0.25.2"
+    "aws-lambda-fusion": "0.0.17",
+    "chrome-aws-lambda": "2.0.x",
+    "node-fetch": "^2.6.0",
+    "puppeteer-core": "2.0.x",
+    "sharp": "^0.25.2",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "aws-sdk": "^2.644.0"

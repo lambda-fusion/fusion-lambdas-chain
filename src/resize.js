@@ -1,10 +1,17 @@
 const sharp = require('sharp')
-const { FunctionFusion } = require('aws-lambda-fusion')
-const fusionConfiguration = require('../fusionConfiguration.json')
-const { handler } = require('./saveS3')
+const { FunctionFusion, handlerWrapper } = require('aws-lambda-fusion')
+const fetch = require('node-fetch')
+const { handler: handlerSaveS3 } = require('./saveS3')
 
-exports.handler = async (event, context) => {
-  console.log('got event', event)
+let traceId
+exports.handler = async (event, context, callback) => {
+  traceId = event.args[1]
+  return handlerWrapper({ event, context, callback, handler: internalHandler, traceId, lambdaName: 'resize' })
+}
+
+const internalHandler = async (event, context) => {
+  const response = await fetch('https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json')
+  const fusionConfiguration = await response.json()
 
   const fusion = new FunctionFusion(fusionConfiguration, { region: 'eu-central-1' })
 
@@ -20,7 +27,7 @@ exports.handler = async (event, context) => {
     .toBuffer()
     ).toString('base64')
 
-  result = await fusion.invokeFunctionSync('resize', { name: 'saveS3', handler }, context, resizedBase64)
+  result = await fusion.invokeFunctionSync('resize', { name: 'saveS3', handler: handlerSaveS3 }, context, resizedBase64, traceId)
 
   if(result.FunctionError){
     throw Error(result.Payload)
