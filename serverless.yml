@@ -27,6 +27,6 @@ functions:
     handler: src/screenshot.handler
     name: screenshot
     timeout: 60
-  saveS3:
-    handler: src/saveS3.handler
-    name: saveS3
+  resize:
+    handler: src/resize.handler
+    name: resize
