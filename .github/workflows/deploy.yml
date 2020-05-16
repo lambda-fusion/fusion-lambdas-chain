@@ -1,0 +1,19 @@
+name: deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - name: Serverless
+      uses: serverless/github-action@v1.53.0
+    - run: |
+        npm install
+        npm run generate-yml
+        sls deploy
