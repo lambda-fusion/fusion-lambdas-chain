@@ -1,24 +1,24 @@
-const chromium = require('chrome-aws-lambda');
-const { FunctionFusion, handlerWrapper } = require('aws-lambda-fusion')
-const { handler: handlerResize } = require('./resize')
-const fetch = require('node-fetch')
-const { v4: uuid } = require('uuid')
+const chromium = require("chrome-aws-lambda");
+const { FunctionFusion, handlerWrapper } = require("aws-lambda-fusion");
+const { handler: handlerResize } = require("./resize");
+const fetch = require("node-fetch");
+const { v4: uuid } = require("uuid");
 
-let traceId
-exports.handler = async (event, context, callback) => {
-  traceId = uuid()
-  return handlerWrapper({event, context, callback, handler: internalHandler, traceId, lambdaName: 'screenshot'})
-}
+let traceId;
 
 const internalHandler = async (event, context) => {
   let base64img = null;
   let browser = null;
   let result = null;
 
-  const response = await fetch('https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json')
-  const fusionConfiguration = await response.json()
+  const response = await fetch(
+    "https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json"
+  );
+  const fusionConfiguration = await response.json();
 
-  const fusion = new FunctionFusion(fusionConfiguration, { region: 'eu-central-1' })
+  const fusion = new FunctionFusion(fusionConfiguration, {
+    region: "eu-central-1",
+  });
 
   try {
     browser = await chromium.puppeteer.launch({
@@ -30,12 +30,17 @@ const internalHandler = async (event, context) => {
 
     const page = await browser.newPage();
 
-    await page.goto(event.url || 'https://example.com');
+    await page.goto(event.url || "https://example.com");
 
-    base64img = await page.screenshot({ encoding: 'base64' })
+    base64img = await page.screenshot({ encoding: "base64" });
 
-    result = await fusion.invokeFunctionSync('screenshot', { name: 'resize', handler: handlerResize }, context, base64img, traceId)
-
+    result = await fusion.invokeFunctionSync(
+      "screenshot",
+      { name: "resize", handler: handlerResize },
+      context,
+      base64img,
+      traceId
+    );
   } catch (error) {
     return context.fail(error);
   } finally {
@@ -44,4 +49,16 @@ const internalHandler = async (event, context) => {
     }
   }
   return result;
+};
+
+exports.handler = async (event, context, callback) => {
+  traceId = uuid();
+  return handlerWrapper({
+    event,
+    context,
+    callback,
+    handler: internalHandler,
+    traceId,
+    lambdaName: "screenshot",
+  });
 };
