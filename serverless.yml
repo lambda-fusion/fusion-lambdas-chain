@@ -7,26 +7,27 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - 'lambda:InvokeFunction'
-        - 'lambda:InvokeAsync'
-      Resource: '*'
+        - "lambda:InvokeFunction"
+        - "lambda:InvokeAsync"
+      Resource: "*"
     - Effect: Allow
       Action:
-        - 's3:PutObject'
-      Resource: '*'
+        - "s3:PutObject"
+      Resource: "*"
     - Effect: Allow
       Action:
-        - 'logs:*'
-      Resource: '*'
+        - "logs:*"
+      Resource: "*"
 package:
   exclude:
     - node_modules/puppeteer/.local-chromium/**
     - node_modules/aws-sdk/**
 functions:
-  screenshot:
-    handler: src/screenshot.handler
-    name: screenshot
+  handler1:
+    handler: src/fusionHandler.handler
+    name: handler1
     timeout: 60
-  resize:
-    handler: src/resize.handler
-    name: resize
+  handler2:
+    handler: src/fusionHandler.handler
+    name: handler2
+    timeout: 60

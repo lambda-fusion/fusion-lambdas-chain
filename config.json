@@ -1,0 +1,10 @@
+[
+  {
+    "entry": "handler1",
+    "lambdas": ["screenshot", "resize"]
+  },
+  {
+    "entry": "handler2",
+    "lambdas": ["saveS3"]
+  }
+]
