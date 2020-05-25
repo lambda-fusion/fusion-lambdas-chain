@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-lambda-fusion": "0.0.22",
+    "aws-lambda-fusion": "0.0.24",
     "chrome-aws-lambda": "2.0.x",
     "node-fetch": "^2.6.0",
     "puppeteer-core": "2.0.x",
