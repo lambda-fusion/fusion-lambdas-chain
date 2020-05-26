@@ -2,18 +2,32 @@ const { FunctionFusion, handlerWrapper } = require("aws-lambda-fusion");
 const fetch = require("node-fetch");
 const { v4: uuid } = require("uuid");
 
+const isInSameGroup = (context, fusionConfig) => {
+  const hasScreenshot = fusionConfig.find((deployment) =>
+    deployment.lambdas.includes("screenshot")
+  );
+  return hasScreenshot.entry === context.functionName;
+};
+
 exports.handler = async (event, context, callback) => {
-  let traceId;
-  if (event.traceId) {
-    traceId = event.traceId;
-  } else {
-    traceId = uuid();
-  }
+  let traceId = "";
+
   console.log("trace id", traceId);
   const response = await fetch(
     "https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json"
   );
   const fusionConfiguration = await response.json();
+
+  if (event.traceId) {
+    traceId = event.traceId;
+  } else {
+    if (!isInSameGroup(context, fusionConfiguration)) {
+      console.log("Handler and screenshot not in same group");
+      return;
+    }
+    traceId = uuid();
+  }
+
   const target = event.target;
   const source = event.source;
 
