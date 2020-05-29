@@ -27,11 +27,29 @@ functions:
     handler: src/fusionHandler.handler
     name: handler0
     timeout: 60
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+          input:
+            target: screenshot
   handler1:
     handler: src/fusionHandler.handler
-    name: handler0
+    name: handler1
     timeout: 60
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+          input:
+            target: screenshot
   handler2:
     handler: src/fusionHandler.handler
-    name: handler0
+    name: handler2
     timeout: 60
+    events:
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+          input:
+            target: screenshot
