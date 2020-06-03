@@ -2,6 +2,9 @@ const { FunctionFusion, handlerWrapper } = require("aws-lambda-fusion");
 const fetch = require("node-fetch");
 const { v4: uuid } = require("uuid");
 
+// A-B Testing implementieren
+// sleeping
+// kleine präsentation zum jetzigen stand
 const isInSameGroup = (context, fusionConfig) => {
   const hasScreenshot = fusionConfig.find((deployment) =>
     deployment.lambdas.includes("screenshot")
@@ -11,8 +14,6 @@ const isInSameGroup = (context, fusionConfig) => {
 
 exports.handler = async (event, context, callback) => {
   let traceId = "";
-
-  console.log("trace id", traceId);
   const response = await fetch(
     "https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json"
   );
