@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-yml": "aws-lambda-fusion -f https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json"
+    "generate-yml": "aws-lambda-fusion -f https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json",
+    "generate-dag": "aws-lambda-fusion -d src"
   },
   "author": "",
   "license": "ISC",
