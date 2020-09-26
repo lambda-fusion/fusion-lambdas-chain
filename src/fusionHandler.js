@@ -9,8 +9,7 @@ const isInSameGroup = (context, fusionConfig) => {
   const hasScreenshot = fusionConfig.find((deployment) =>
     deployment.lambdas.includes("screenshot")
   );
-  // remove -stg/-prd
-  return hasScreenshot.entry === context.functionName.split("-")[0];
+  return hasScreenshot.entry === context.functionName;
 };
 
 exports.handler = async (event, context, callback) => {
