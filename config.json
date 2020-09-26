@@ -1,7 +1,11 @@
 [
   {
+    "entry": "handler0",
+    "lambdas": ["screenshot"]
+  },
+  {
     "entry": "handler1",
-    "lambdas": ["screenshot", "resize"]
+    "lambdas": ["resize"]
   },
   {
     "entry": "handler2",

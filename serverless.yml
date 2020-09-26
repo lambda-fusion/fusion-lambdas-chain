@@ -25,7 +25,7 @@ package:
 functions:
   handler0:
     handler: src/fusionHandler.handler
-    name: handler0
+    name: handler0-${opt:stage, 'prod'}
     timeout: 60
     events:
       - schedule:
@@ -35,7 +35,7 @@ functions:
             target: screenshot
   handler1:
     handler: src/fusionHandler.handler
-    name: handler1
+    name: handler1-${opt:stage, 'prod'}
     timeout: 60
     events:
       - schedule:
@@ -45,7 +45,7 @@ functions:
             target: screenshot
   handler2:
     handler: src/fusionHandler.handler
-    name: handler2
+    name: handler2-${opt:stage, 'prod'}
     timeout: 60
     events:
       - schedule:
