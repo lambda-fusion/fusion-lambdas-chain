@@ -2,14 +2,17 @@ const { FunctionFusion, handlerWrapper } = require("aws-lambda-fusion");
 const fetch = require("node-fetch");
 const { v4: uuid } = require("uuid");
 
-// A-B Testing implementieren
-// sleeping
-// kleine präsentation zum jetzigen stand
+const STAGE = process.env.STAGE;
+
 const isInSameGroup = (context, fusionConfig) => {
   const hasScreenshot = fusionConfig.find((deployment) =>
     deployment.lambdas.includes("screenshot")
   );
-  return hasScreenshot.entry === context.functionName;
+  return (
+    `${hasScreenshot.entry}-${
+      process.env.STAGE ? process.env.STAGE : "prod"
+    }` === context.functionName
+  );
 };
 
 exports.handler = async (event, context, callback) => {
