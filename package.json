@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-yml": "aws-lambda-fusion -f https://fusion-config.s3.eu-central-1.amazonaws.com/fusionConfiguration.json",
-    "generate-dag": "aws-lambda-fusion -d src"
+    "generate-dag": "aws-lambda-fusion -d src",
+    "generate-github-actions": "aws-lambda-fusion -g"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-lambda-fusion": "0.2.5",
+    "aws-lambda-fusion": "0.2.6",
     "chrome-aws-lambda": "2.0.x",
     "node-fetch": "^2.6.1",
     "puppeteer-core": "2.0.x",
