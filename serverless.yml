@@ -2,6 +2,7 @@ service:
   name: fusion-lambdas
 provider:
   name: aws
+  memorySize: 128
   runtime: nodejs12.x
   region: eu-central-1
   environment:
