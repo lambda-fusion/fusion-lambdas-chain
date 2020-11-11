@@ -38,7 +38,7 @@ const internalHandler = async (event, context) => {
     console.log("successfully captured screenshot");
 
     result = await fusion.invokeFunctionSync(
-      { source: "screenshot", target: "resize", context, traceId },
+      { source: "screenshot", target: "blur", context, traceId },
       base64img
     );
   } catch (error) {
