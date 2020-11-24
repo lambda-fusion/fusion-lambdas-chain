@@ -1,1 +1,1 @@
-{ "resize": ["saveS3"], "screenshot": ["blur"] }
+{ "blur": ["saveS3"], "screenshot": ["blur"] }
