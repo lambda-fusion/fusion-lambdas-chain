@@ -20,6 +20,6 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "aws-sdk": "^2.644.0"
+    "aws-sdk": "^2.814.0"
   }
 }
