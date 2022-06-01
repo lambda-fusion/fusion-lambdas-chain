@@ -16,7 +16,7 @@
     "chrome-aws-lambda": "2.0.x",
     "node-fetch": "^2.6.1",
     "puppeteer-core": "2.0.x",
-    "sharp": "^0.25.4",
+    "sharp": "^0.30.5",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
