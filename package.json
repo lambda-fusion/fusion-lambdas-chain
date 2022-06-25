@@ -14,7 +14,7 @@
   "dependencies": {
     "aws-lambda-fusion": "0.2.8",
     "chrome-aws-lambda": "2.0.x",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "puppeteer-core": "2.0.x",
     "sharp": "^0.25.4",
     "uuid": "^7.0.3"
